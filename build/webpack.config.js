@@ -1,14 +1,27 @@
 const webpack = require('webpack')
 const path = require('path')
+const fs = require('fs')
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
 const min = process.env.MIN === 'true'
 const standalone = process.env.STANDALONE === 'true'
+const year = new Date().getFullYear()
+
+const dataPkg = fs.readFileSync(path.resolve(__dirname, '../package.json'))
+const pkg = JSON.parse(dataPkg)
 
 const plugins = [new webpack.ProvidePlugin({
   $: 'jquery',
   jQuery: 'jquery',
   'window.jQuery': 'jquery',
   Popper: ['popper.js', 'default']
+}), new webpack.BannerPlugin({
+  raw: true,
+  banner: `/*!
+ * Bootstrap v${pkg.version} (${pkg.homepage})
+ * Copyright 2011-${year} ${pkg.author}
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+`
 })]
 
 const libraryName = 'bootstrap'

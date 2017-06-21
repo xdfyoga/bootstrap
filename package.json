@@ -95,7 +95,6 @@
     "qunitjs": "^2.3.2",
     "shelljs": "^0.7.7",
     "shx": "^0.2.2",
-    "uglify-js": "^3.0.13",
     "webpack": "^2.6.1"
   },
   "engines": {
