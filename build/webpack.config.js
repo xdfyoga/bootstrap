@@ -1,10 +1,10 @@
-const webpack = require('webpack');
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-const path = require('path');
+const webpack = require('webpack')
+const path = require('path')
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
 const min = process.env.MIN === 'true'
 const standalone = process.env.STANDALONE === 'true'
 
-let plugins = [new webpack.ProvidePlugin({ 
+const plugins = [new webpack.ProvidePlugin({
   $: 'jquery',
   jQuery: 'jquery',
   'window.jQuery': 'jquery',
@@ -12,14 +12,18 @@ let plugins = [new webpack.ProvidePlugin({
 })]
 
 const libraryName = 'bootstrap'
-let outputFile
+var outputFile
 if (min) {
-  plugins.push(new UglifyJsPlugin({ 
-    minimize: true 
-  }));
+  plugins.push(new UglifyJsPlugin({
+    minimize: true,
+    mangle: {
+      except: ['$', 'Popper']
+    },
+    comments: '/^!/'
+  }))
   outputFile = !standalone ? libraryName + '.bundle.min.js' : libraryName + '.min.js'
 } else {
-  outputFile = !standalone ? libraryName + '.bundle.js' : libraryName + '.js';
+  outputFile = !standalone ? libraryName + '.bundle.js' : libraryName + '.js'
 }
 
 const externals = {
@@ -30,9 +34,9 @@ if (standalone) {
 }
 
 module.exports = {
-  entry: __dirname + '/../js/src/index.js',
+  entry: path.resolve(__dirname, '../js/src/index.js'),
   output: {
-    path: __dirname + '/../dist/js',
+    path: path.resolve(__dirname, '../dist/js'),
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
