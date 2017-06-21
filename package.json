@@ -34,6 +34,7 @@
     "js-lint-docs": "eslint --config js/tests/.eslintrc.json assets/js/",
     "js-compile": "npm-run-all --parallel js-compile-*",
     "js-compile-bundle": "cross-env STANDALONE=true MIN=false webpack --config build/webpack.config.js",
+    "js-compile-with-deps": "npm-run-all webpack-bundle webpack-bundle-min",
     "js-compile-plugins": "webpack --config build/webpack.plugin.config.js",
     "js-minify": "cross-env STANDALONE=true MIN=true webpack --config build/webpack.config.js",
     "js-minify-docs": "uglifyjs --compress warnings=false --mangle --comments '/^!/' --output assets/js/docs.min.js assets/js/vendor/anchor.min.js assets/js/vendor/clipboard.min.js assets/js/vendor/holder.min.js assets/js/src/application.js",
