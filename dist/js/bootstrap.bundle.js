@@ -143,8 +143,7 @@ function getSpecialTransitionEndEvent() {
     delegateType: transition.end,
     handle: function handle(event) {
       if ((0, _jquery2.default)(event.target).is(this)) {
-        return event.handleObj.handler.apply(this, arguments // eslint-disable-line prefer-rest-params
-        );
+        return event.handleObj.handler.apply(this, arguments); // eslint-disable-line prefer-rest-params
       }
       return undefined;
     }
@@ -555,13 +554,13 @@ var Tooltip = function () {
           }
         });
 
-        (0, _jquery2.default)(tip).addClass(ClassName.SHOW
+        (0, _jquery2.default)(tip).addClass(ClassName.SHOW);
 
         // if this is a touch-enabled device we add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
-        );if ('ontouchstart' in document.documentElement) {
+        if ('ontouchstart' in document.documentElement) {
           (0, _jquery2.default)('body').children().on('mouseover', null, _jquery2.default.noop);
         }
 
@@ -616,11 +615,11 @@ var Tooltip = function () {
         return;
       }
 
-      (0, _jquery2.default)(tip).removeClass(ClassName.SHOW
+      (0, _jquery2.default)(tip).removeClass(ClassName.SHOW);
 
       // if this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
-      );if ('ontouchstart' in document.documentElement) {
+      if ('ontouchstart' in document.documentElement) {
         (0, _jquery2.default)('body').children().off('mouseover', null, _jquery2.default.noop);
       }
 
@@ -1485,6 +1484,8 @@ function getOffsetRectRelativeToArbitraryNode(children, parent) {
     width: childrenRect.width,
     height: childrenRect.height
   });
+  offsets.marginTop = 0;
+  offsets.marginLeft = 0;
 
   // Subtract margins of documentElement in case it's being used as parent
   // we do this only on HTML because it's the only element that behaves
@@ -2673,6 +2674,14 @@ function offset(data, _ref) {
  */
 function preventOverflow(data, options) {
   var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
+
+  // If offsetParent is the reference element, we really want to
+  // go one step up and use the next offsetParent as reference to
+  // avoid to make this modifier completely useless and look like broken
+  if (data.instance.reference === boundariesElement) {
+    boundariesElement = getOffsetParent(boundariesElement);
+  }
+
   var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement);
   options.boundaries = boundaries;
 
@@ -3572,7 +3581,7 @@ var Alert = function () {
  */
 
 exports.default = Alert;
-(0, _jquery2.default)(document).on(Event.CLICK_DATA_API, Selector.DISMISS, Alert._handleDismiss(new Alert())
+(0, _jquery2.default)(document).on(Event.CLICK_DATA_API, Selector.DISMISS, Alert._handleDismiss(new Alert()));
 
 /**
  * ------------------------------------------------------------------------
@@ -3580,7 +3589,7 @@ exports.default = Alert;
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = Alert._jQueryInterface;
+_jquery2.default.fn[NAME] = Alert._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = Alert;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -3766,7 +3775,7 @@ exports.default = Button;
 }).on(Event.FOCUS_BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
   var button = (0, _jquery2.default)(event.target).closest(Selector.BUTTON)[0];
   (0, _jquery2.default)(button).toggleClass(ClassName.FOCUS, /^focus(in)?$/.test(event.type));
-}
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -3774,7 +3783,7 @@ exports.default = Button;
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = Button._jQueryInterface;
+_jquery2.default.fn[NAME] = Button._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = Button;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -4313,7 +4322,7 @@ var Carousel = function () {
     var $carousel = (0, _jquery2.default)(this);
     Carousel._jQueryInterface.call($carousel, $carousel.data());
   });
-}
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -4321,7 +4330,7 @@ var Carousel = function () {
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = Carousel._jQueryInterface;
+_jquery2.default.fn[NAME] = Carousel._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = Carousel;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -4608,8 +4617,8 @@ var Collapse = function () {
     key: '_getConfig',
     value: function _getConfig(config) {
       config = _jquery2.default.extend({}, Default, config);
-      config.toggle = Boolean(config.toggle // coerce string values
-      );_util2.default.typeCheckConfig(NAME, config, DefaultType);
+      config.toggle = Boolean(config.toggle); // coerce string values
+      _util2.default.typeCheckConfig(NAME, config, DefaultType);
       return config;
     }
   }, {
@@ -4712,7 +4721,7 @@ exports.default = Collapse;
     var config = data ? 'toggle' : $trigger.data();
     Collapse._jQueryInterface.call($target, config);
   });
-}
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -4720,7 +4729,7 @@ exports.default = Collapse;
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = Collapse._jQueryInterface;
+_jquery2.default.fn[NAME] = Collapse._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = Collapse;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -5181,7 +5190,7 @@ exports.default = Dropdown;
   Dropdown._jQueryInterface.call((0, _jquery2.default)(this), 'toggle');
 }).on(Event.CLICK_DATA_API, Selector.FORM_CHILD, function (e) {
   e.stopPropagation();
-}
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -5189,7 +5198,7 @@ exports.default = Dropdown;
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = Dropdown._jQueryInterface;
+_jquery2.default.fn[NAME] = Dropdown._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = Dropdown;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -5500,8 +5509,8 @@ var Modal = function () {
     value: function _enforceFocus() {
       var _this4 = this;
 
-      (0, _jquery2.default)(document).off(Event.FOCUSIN // guard against infinite focus loop
-      ).on(Event.FOCUSIN, function (event) {
+      (0, _jquery2.default)(document).off(Event.FOCUSIN) // guard against infinite focus loop
+      .on(Event.FOCUSIN, function (event) {
         if (document !== event.target && _this4._element !== event.target && !(0, _jquery2.default)(_this4._element).has(event.target).length) {
           _this4._element.focus();
         }
@@ -5673,17 +5682,17 @@ var Modal = function () {
           var actualPadding = (0, _jquery2.default)(element)[0].style.paddingRight;
           var calculatedPadding = (0, _jquery2.default)(element).css('padding-right');
           (0, _jquery2.default)(element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this9._scrollbarWidth + 'px');
-        }
+        });
 
         // Adjust navbar-toggler margin
-        );(0, _jquery2.default)(Selector.NAVBAR_TOGGLER).each(function (index, element) {
+        (0, _jquery2.default)(Selector.NAVBAR_TOGGLER).each(function (index, element) {
           var actualMargin = (0, _jquery2.default)(element)[0].style.marginRight;
           var calculatedMargin = (0, _jquery2.default)(element).css('margin-right');
           (0, _jquery2.default)(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) + _this9._scrollbarWidth + 'px');
-        }
+        });
 
         // Adjust body padding
-        );var actualPadding = document.body.style.paddingRight;
+        var actualPadding = document.body.style.paddingRight;
         var calculatedPadding = (0, _jquery2.default)('body').css('padding-right');
         (0, _jquery2.default)('body').data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + 'px');
       }
@@ -5697,18 +5706,18 @@ var Modal = function () {
         if (typeof padding !== 'undefined') {
           (0, _jquery2.default)(element).css('padding-right', padding).removeData('padding-right');
         }
-      }
+      });
 
       // Restore navbar-toggler margin
-      );(0, _jquery2.default)(Selector.NAVBAR_TOGGLER).each(function (index, element) {
+      (0, _jquery2.default)(Selector.NAVBAR_TOGGLER).each(function (index, element) {
         var margin = (0, _jquery2.default)(element).data('margin-right');
         if (typeof margin !== 'undefined') {
           (0, _jquery2.default)(element).css('margin-right', margin).removeData('margin-right');
         }
-      }
+      });
 
       // Restore body padding
-      );var padding = (0, _jquery2.default)('body').data('padding-right');
+      var padding = (0, _jquery2.default)('body').data('padding-right');
       if (typeof padding !== 'undefined') {
         (0, _jquery2.default)('body').css('padding-right', padding).removeData('padding-right');
       }
@@ -5801,7 +5810,7 @@ exports.default = Modal;
   });
 
   Modal._jQueryInterface.call((0, _jquery2.default)(target), config, this);
-}
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -5809,7 +5818,7 @@ exports.default = Modal;
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = Modal._jQueryInterface;
+_jquery2.default.fn[NAME] = Modal._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = Modal;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -5940,10 +5949,10 @@ var Popover = function (_Tooltip) {
   }, {
     key: 'setContent',
     value: function setContent() {
-      var $tip = (0, _jquery2.default)(this.getTipElement()
+      var $tip = (0, _jquery2.default)(this.getTipElement());
 
       // we use append for html objects to maintain js events
-      );this.setElementContent($tip.find(Selector.TITLE), this.getTitle());
+      this.setElementContent($tip.find(Selector.TITLE), this.getTitle());
       this.setElementContent($tip.find(Selector.CONTENT), this._getContent());
 
       $tip.removeClass(ClassName.FADE + ' ' + ClassName.SHOW);
@@ -6320,10 +6329,10 @@ var ScrollSpy = function () {
         $link.addClass(ClassName.ACTIVE);
       } else {
         // Set triggered link as active
-        $link.addClass(ClassName.ACTIVE
+        $link.addClass(ClassName.ACTIVE);
         // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
-        );$link.parents(Selector.NAV_LIST_GROUP).prev(Selector.NAV_LINKS + ', ' + Selector.LIST_ITEMS).addClass(ClassName.ACTIVE);
+        $link.parents(Selector.NAV_LIST_GROUP).prev(Selector.NAV_LINKS + ', ' + Selector.LIST_ITEMS).addClass(ClassName.ACTIVE);
       }
 
       (0, _jquery2.default)(this._scrollElement).trigger(Event.ACTIVATE, {
@@ -6387,7 +6396,7 @@ exports.default = ScrollSpy;
     var $spy = (0, _jquery2.default)(scrollSpys[i]);
     ScrollSpy._jQueryInterface.call($spy, $spy.data());
   }
-}
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -6395,7 +6404,7 @@ exports.default = ScrollSpy;
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = ScrollSpy._jQueryInterface;
+_jquery2.default.fn[NAME] = ScrollSpy._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = ScrollSpy;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -6668,7 +6677,7 @@ exports.default = Tab;
 (0, _jquery2.default)(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
   event.preventDefault();
   Tab._jQueryInterface.call((0, _jquery2.default)(this), 'show');
-}
+});
 
 /**
  * ------------------------------------------------------------------------
@@ -6676,7 +6685,7 @@ exports.default = Tab;
  * ------------------------------------------------------------------------
  */
 
-);_jquery2.default.fn[NAME] = Tab._jQueryInterface;
+_jquery2.default.fn[NAME] = Tab._jQueryInterface;
 _jquery2.default.fn[NAME].Constructor = Tab;
 _jquery2.default.fn[NAME].noConflict = function () {
   _jquery2.default.fn[NAME] = JQUERY_NO_CONFLICT;
@@ -6694,7 +6703,6 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Tooltip = exports.Tab = exports.Scrollspy = exports.Popover = exports.Modal = exports.Dropdown = exports.Collapse = exports.Carousel = exports.Button = exports.Alert = exports.Util = undefined;
 
 var _alert = __webpack_require__(4);
 
@@ -6749,17 +6757,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * --------------------------------------------------------------------------
  */
 
-exports.Util = _util2.default;
-exports.Alert = _alert2.default;
-exports.Button = _button2.default;
-exports.Carousel = _carousel2.default;
-exports.Collapse = _collapse2.default;
-exports.Dropdown = _dropdown2.default;
-exports.Modal = _modal2.default;
-exports.Popover = _popover2.default;
-exports.Scrollspy = _scrollspy2.default;
-exports.Tab = _tab2.default;
-exports.Tooltip = _tooltip2.default;
+exports.default = {
+  Util: _util2.default,
+  Alert: _alert2.default,
+  Button: _button2.default,
+  Carousel: _carousel2.default,
+  Collapse: _collapse2.default,
+  Dropdown: _dropdown2.default,
+  Modal: _modal2.default,
+  Popover: _popover2.default,
+  Scrollspy: _scrollspy2.default,
+  Tab: _tab2.default,
+  Tooltip: _tooltip2.default
+};
+module.exports = exports['default'];
 
 /***/ }),
 /* 14 */

@@ -4307,7 +4307,6 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Tooltip = exports.Tab = exports.Scrollspy = exports.Popover = exports.Modal = exports.Dropdown = exports.Collapse = exports.Carousel = exports.Button = exports.Alert = exports.Util = undefined;
 
 var _alert = __webpack_require__(4);
 
@@ -4362,17 +4361,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * --------------------------------------------------------------------------
  */
 
-exports.Util = _util2.default;
-exports.Alert = _alert2.default;
-exports.Button = _button2.default;
-exports.Carousel = _carousel2.default;
-exports.Collapse = _collapse2.default;
-exports.Dropdown = _dropdown2.default;
-exports.Modal = _modal2.default;
-exports.Popover = _popover2.default;
-exports.Scrollspy = _scrollspy2.default;
-exports.Tab = _tab2.default;
-exports.Tooltip = _tooltip2.default;
+exports.default = {
+  Util: _util2.default,
+  Alert: _alert2.default,
+  Button: _button2.default,
+  Carousel: _carousel2.default,
+  Collapse: _collapse2.default,
+  Dropdown: _dropdown2.default,
+  Modal: _modal2.default,
+  Popover: _popover2.default,
+  Scrollspy: _scrollspy2.default,
+  Tab: _tab2.default,
+  Tooltip: _tooltip2.default
+};
+module.exports = exports['default'];
 
 /***/ })
 /******/ ]);
