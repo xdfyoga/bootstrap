@@ -39,6 +39,7 @@ module.exports = {
   externals: {
     jquery: 'jQuery',
     'popper.js': 'Popper',
-    './util': 'Util'
+    './util': 'Util',
+    './tooltip': 'Tooltip'
   }
 }
