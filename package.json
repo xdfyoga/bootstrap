@@ -35,7 +35,7 @@
     "js-compile": "npm-run-all --parallel js-compile-*",
     "js-compile-standalone": "cross-env STANDALONE=true MIN=false webpack --config build/webpack.config.js",
     "js-compile-bundle": "cross-env STANDALONE=false MIN=false webpack --config build/webpack.config.js",
-    "js-compile-plugins": "webpack --config build/webpack.plugin.config.js",
+    "js-compile-plugins": "webpack --config build/webpack.plugins.config.js",
     "js-minify": "npm-run-all js-minify-standalone js-minify-bundled",
     "js-minify-standalone": "cross-env STANDALONE=true MIN=true webpack --config build/webpack.config.js",
     "js-minify-bundled": "cross-env STANDALONE=false MIN=true webpack --config build/webpack.config.js",
